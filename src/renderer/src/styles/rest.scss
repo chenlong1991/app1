@@ -1,0 +1,114 @@
+/***
+    新的 CSS 重置 - 版本 1.11.2（最后更新于 2023 年 11 月 15 日）
+    GitHub 页面：https://github.com/elad2412/the-new-css-reset
+***/
+
+/*
+    移除“用户代理样式表”的所有样式，除了“display”属性
+    - “symbol *”部分是为了解决 Firefox SVG 雪碧图的问题
+    - 排除“html”元素，否则 Chrome 中的一个错误会破坏 CSS 连字符属性（https://github.com/elad2412/the-new-css-reset/issues/36）
+ */
+*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+  all: unset;
+  display: revert;
+}
+
+/* 首选的盒模型值 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 修复移动 Safari 在横屏模式下增加字体大小的问题 */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* 为锚标签重新应用指针光标 */
+a,
+button {
+  cursor: revert;
+}
+
+/* 移除列表样式（项目符号/编号） */
+ol,
+ul,
+menu,
+summary {
+  list-style: none;
+}
+
+/* 使图像不能超出其容器 */
+img {
+  max-inline-size: 100%;
+  max-block-size: 100%;
+}
+
+/* 移除表格单元格之间的间距 */
+table {
+  border-collapse: collapse;
+}
+
+/* Safari - 解决在<body>文本输入上使用 user-select:none 时不起作用的问题 */
+input,
+textarea {
+  -webkit-user-select: auto;
+}
+
+/* 为 Safari 上的<textarea>元素恢复“white-space”属性 */
+textarea {
+  white-space: revert;
+}
+
+/* 允许样式化 meter 元素的最小样式 */
+meter {
+  -webkit-appearance: revert;
+  appearance: revert;
+}
+
+/* 仅用于此功能的预格式化文本 */
+:where(pre) {
+  all: revert;
+  box-sizing: border-box;
+}
+
+/* 重置输入占位符的默认文本不透明度 */
+::placeholder {
+  color: unset;
+}
+
+/* 修复“hidden”属性的功能。
+   display:revert; 还原为元素而不是属性 */
+:where([hidden]) {
+  display: none;
+}
+
+/* 还原 Chromium 浏览器中的错误
+   - 修复可编辑内容属性将正常工作。
+   - 为 Safari 添加-webkit-user-select:auto;，以防在包装器元素上使用 user-select:none */
+:where([contenteditable]:not([contenteditable='false'])) {
+  -moz-user-modify: read-write;
+  -webkit-user-modify: read-write;
+  overflow-wrap: break-word;
+  -webkit-line-break: after-white-space;
+  -webkit-user-select: auto;
+}
+
+/* 还原仅在 Chromium 和 Safari 中存在的可拖动功能 */
+:where([draggable='true']) {
+  -webkit-user-drag: element;
+}
+
+/* 还原模态原生行为 */
+:where(dialog:modal) {
+  all: revert;
+  box-sizing: border-box;
+}
+
+/* 移除详细信息摘要的-webkit 样式 */
+::-webkit-details-marker {
+  display: none;
+}
