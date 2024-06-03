@@ -1,0 +1,10 @@
+# 设置行尾处理策略
+* text=auto
+
+# 针对不同文件类型的处理策略
+*.html text eol=lf
+*.css text eol=lf
+
+# 强制二进制文件不被转换行尾符
+*.jpg binary
+*.png binary

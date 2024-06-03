@@ -31,6 +31,13 @@ function createSettingsWindow() {
   } else {
     settingsWindow.loadFile(__dirname, '../renderer/index.html') // 生产环境加载文件并指定 hash
   }
+  settingsWindow.on('close', event => {
+    if (!app.isQuiting) {
+      event.preventDefault()
+      settingsWindow.hide()
+      settingsWindow.setSkipTaskbar(true)
+    }
+  })
   // 自动打开开发者工具
   settingsWindow.webContents.openDevTools()
 }
@@ -44,9 +51,22 @@ function createTray() {
 
   // 创建托盘上下文菜单
   const contextMenu = Menu.buildFromTemplate([
-    { label: '设置', click: () => createSettingsWindow() }, // 添加设置选项
+    {
+      label: '设置',
+      click: () => {
+        if (settingsWindow) {
+          settingsWindow.show()
+        } else createSettingsWindow()
+      }
+    }, // 添加设置选项
     { type: 'separator' }, // 分隔线
-    { label: '显示窗口', click: () => createSettingsWindow.show() }, // 添加显示窗口选项
+    {
+      label: '显示窗口',
+      click: () => {
+        settingsWindow.show()
+        settingsWindow.setSkipTaskbar(false)
+      }
+    }, // 添加显示窗口选项
     {
       label: '重启软件',
       click: () => {
@@ -70,6 +90,7 @@ function createTray() {
   // 添加托盘点击事件，点击时显示窗口
   tray.on('click', () => {
     settingsWindow.show()
+    settingsWindow.setSkipTaskbar(false)
   })
 }
 
@@ -85,7 +106,6 @@ app.whenReady().then(() => {
 
   // 监听自定义事件
   // ipcMain.on('ping', () => console.log('pong'))
-
   createSettingsWindow() // 创建主窗口
 
   // 在macOS上，当应用被激活且没有窗口时，创建一个新窗口
