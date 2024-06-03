@@ -1,7 +1,7 @@
 <template>
   <v-layout column style="height: 100vh">
     <!-- 系统栏，固定在顶部 -->
-    <v-system-bar window style="-webkit-app-region: drag" theme="dark">
+    <v-system-bar window style="-webkit-app-region: drag">
       <span>设置</span>
 
       <v-spacer></v-spacer>
@@ -31,28 +31,34 @@
         @click="close"
       ></v-btn>
     </v-system-bar>
-    <v-navigation-drawer floating permanent theme="dark" :width="200">
-      <v-list density="compact" nav>
-        <v-list-item
-          prepend-icon="mdi-view-dashboard"
-          title="翻译设置"
-          value="111"
-          to="/setting/translation"
-        ></v-list-item>
-        <v-list-item prepend-icon="mdi-forum" title="文本识别设置" value="about"></v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <!-- 滚动内容区域 -->
     <Scrollbar :top-offset="32">
-      <v-main class="pt-0 d-flex justify-center align-center" theme="dark">
-        <v-container>
-          <router-view></router-view>
-        </v-container>
-      </v-main>
+      <div class="aa">
+        <p>哈哈哈哈</p>
+        <p>呵呵呵呵呵呵呵</p>
+        <p>哈哈哈哈</p>
+        <p>呵呵呵呵呵呵呵</p>
+        <p>哈哈哈哈</p>
+        <p>呵呵呵呵呵呵呵</p>
+        <p>哈哈哈哈</p>
+        <p>呵呵呵呵呵呵呵</p>
+        <p>哈哈哈哈</p>
+        <p>呵呵呵呵呵呵呵</p>
+        <p>哈哈哈哈</p>
+        <p>呵呵呵呵呵呵呵</p>
+        <p>哈哈哈哈</p>
+        <p>呵呵呵呵呵呵呵</p>
+        <p>哈哈哈哈</p>
+        <p>呵呵呵呵呵呵呵</p>
+        <p>哈哈哈哈</p>
+        <p>呵呵呵呵呵呵呵</p>
+        <p>哈哈哈哈</p>
+        <p>呵呵呵呵呵呵呵</p>
+        <p>哈哈哈哈</p>
+        <p>呵呵呵呵呵呵呵</p>
+      </div>
     </Scrollbar>
   </v-layout>
 </template>
-
 <script setup>
 const minimize = () => {
   window.electronAPI.minimizeWindow()
@@ -66,5 +72,9 @@ const close = () => {
   window.electronAPI.closeWindow()
 }
 </script>
-
-<style></style>
+<style lang="scss" scoped>
+.aa {
+  width: 100%;
+  height: 1400px;
+}
+</style>

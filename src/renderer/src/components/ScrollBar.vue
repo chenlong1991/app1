@@ -1,6 +1,9 @@
 <template>
   <!-- 使用动态样式绑定高度，减去传入的 topOffset 值 -->
-  <div :style="{ height: `calc(100vh - ${topOffset}px)` }" class="custom-scrollbar">
+  <div
+    :style="{ height: `calc(100vh - ${topOffset}px)`, marginTop: `${topOffset}px` }"
+    class="custom-scrollbar"
+  >
     <!-- 插槽，用于在组件中插入任意内容 -->
     <slot></slot>
   </div>
@@ -22,6 +25,7 @@ const { topOffset } = defineProps({
 .custom-scrollbar {
   overflow-y: auto; /* 使内容区域可垂直滚动 */
   position: relative; /* 确保伪元素定位正确 */
+  width: 100%; /* 确保滚动条水平居中 */
 }
 
 /* 自定义整个滚动条的样式 */

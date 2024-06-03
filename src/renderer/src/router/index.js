@@ -5,7 +5,16 @@ const router = createRouter({
   routes: [
     { path: '/', redirect: '/setting' },
     // { path: '/home', component: () => import('../views/home/index.vue') },
-    { path: '/setting', component: () => import('@renderer/views/SettingPage.vue') }
+    {
+      path: '/setting',
+      component: () => import('@renderer/views/SettingPage.vue'),
+      children: [
+        {
+          path: 'translation',
+          component: () => import('../views/TranslationSettings.vue')
+        }
+      ]
+    }
   ]
 })
 
