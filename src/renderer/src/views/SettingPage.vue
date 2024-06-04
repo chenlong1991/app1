@@ -45,9 +45,7 @@
     <!-- 滚动内容区域 -->
     <Scrollbar :top-offset="32">
       <v-main class="pt-0 d-flex justify-center align-center" theme="dark">
-        <v-container>
-          <router-view></router-view>
-        </v-container>
+        <router-view></router-view>
       </v-main>
     </Scrollbar>
   </v-layout>

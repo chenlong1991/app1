@@ -47,7 +47,9 @@ function createSettingsWindow() {
  */
 function createTray() {
   const iconImage = nativeImage.createFromPath(join(__dirname, '../../resources/icon.png')) // 创建托盘图标
-  tray = new Tray(iconImage) // 创建托盘实例
+  const trayIcon = iconImage.resize({ width: 18, height: 16 }) // 调整图标大小
+
+  tray = new Tray(trayIcon) // 创建托盘实例
 
   // 创建托盘上下文菜单
   const contextMenu = Menu.buildFromTemplate([
@@ -85,7 +87,6 @@ function createTray() {
 
   tray.setContextMenu(contextMenu) // 设置托盘菜单
   tray.setToolTip('这是我的应用') // 设置托盘提示
-  tray.setTitle('This is my title') // 设置托盘标题
 
   // 添加托盘点击事件，点击时显示窗口
   tray.on('click', () => {
